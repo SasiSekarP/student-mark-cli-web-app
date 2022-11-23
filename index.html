@@ -191,9 +191,9 @@
         formControleEl.addEventListener('submit',(e)=>{
             e.preventDefault();
             let NameVl = NameEl.value;
-            let UnitTestVl = Number(UnitTestEl.value);
-            let PreFinalMarkVl = Number(PreFinalMarkEl.value);
-            let FinalMarkVl = Number(FinalMarkEl.value);
+            let UnitTestVl = UnitTestEl.value;
+            let PreFinalMarkVl = PreFinalMarkEl.value;
+            let FinalMarkVl = FinalMarkEl.value;
             NameEl.value = '';
             UnitTestEl.value ='';
             PreFinalMarkEl.value = '';
@@ -202,34 +202,34 @@
             if (NameVl){
                 alt1El.style.visibility = 'hidden';
             }
-            if (UnitTestVl===0){
+            if (UnitTestVl){
                 alt2El.style.visibility = 'hidden';
             }
-            if (PreFinalMarkVl||PreFinalMarkVl===0){
+            if (PreFinalMarkVl){
                 alt3El.style.visibility = 'hidden';
             }
-            if (FinalMarkVl||FinalMarkVl===0){
+            if (FinalMarkVl){
                 alt4El.style.visibility = 'hidden';
             }
             if (!NameVl){
                 alt1El.style.visibility = 'visible';
             }
-            if ((!UnitTestVl)&&(UnitTestVl!=0)){
+            if (!UnitTestVl){
                 alt2El.style.visibility = 'visible';
             }
-            if (!PreFinalMarkVl&&PreFinalMarkVl!=0){
+            if (!PreFinalMarkVl){
                 alt3El.style.visibility = 'visible';
             }
-            if (!FinalMarkVl&&FinalMarkVl!=0){
+            if (!FinalMarkVl){
                 alt4El.style.visibility = 'visible';
             }
-            if(NameVl&&(UnitTestVl||UnitTestVl===0)&&(PreFinalMarkVl||PreFinalMarkVl===0)&&(FinalMarkVl||FinalMarkVl===0)){
+            if(NameVl&&UnitTestVl&&PreFinalMarkVl&&FinalMarkVl){
                 rollNo += 1;
                 let obj = {rollNo,
                     name:NameVl,
-                    UnitTest:UnitTestVl,
-                    PreFinalMark:PreFinalMarkVl,
-                    FinalMark:FinalMarkVl,
+                    UnitTest:Number(UnitTestVl),
+                    PreFinalMark:Number(PreFinalMarkVl),
+                    FinalMark:Number(FinalMarkVl),
                     totalMark: function(){
                         return this.UnitTest + this.PreFinalMark + this.FinalMark;
                     }
