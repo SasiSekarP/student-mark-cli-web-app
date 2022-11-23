@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>student Mark</title>
+</head>
+<body>
+    <h1 class="row1">Enter student's &nbsp mark</h1>
+    <form action="" id="formControle">
+        <div class="row2" id="row">
+            <label for="Name">Name :</label>
+            <input type="text" id="Name" class="Name" placeholder="Enter Name"/>
+            <div class="alt1" id="alt1">Error</div>
+        </div>
+        <div class="row3" id="row">
+            <div class="left" id="left">
+                <label for="UnitTest">Unit Test Mark</label>
+                <input type="number" min="0" class="UnitTest" id="UnitTest" placeholder="Enter Mark"/>
+                <div class="alt" id="alt2">Error</div>
+            </div>
+            <div class="mid" id="mid">
+                <label for="PreFinalMark">PreFinal Mark</label>
+                <input type="number" min="0" class="PreFinalMark" id="PreFinalMark" placeholder="Enter Mark"/>
+                <div class="alt" id="alt3">Error</div>
+            </div>
+            <div class="left" id="left">
+                <label for="FinalMark">Final Mark</label>
+                <input type="number" min="0" class="FinalMark" id="FinalMark" placeholder="Enter Mark"/>
+                <div class="alt" id="alt4">Error</div>
+            </div>
+        </div>
+        <div class="row4" id="row">
+            <button class="btn" type="submit">Add</button>
+        </div>
+    </form>
+    <ul class="resultContainer" id="resultContainer">
+    </ul>
+    <h2 class="result" id="result"></h2>
+    <style>
+        *,*::after,*::before{
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+        }
+
+        li{
+            list-style: none;
+        }
+
+        .row1,.row2,.row3,.row4{
+            display: flex;
+            justify-content: center;
+        }
+
+        body{
+            background-color: rgb(49, 49, 59);
+        }
+
+        .row1{
+            color: rgb(165, 172, 234);
+            margin: 1rem;
+        }
+
+        .row2{
+            color: rgb(165, 172, 234);
+            margin-bottom: 2rem;
+        }
+
+        .alt1{
+            color: red;
+            position: relative;
+            top: 35px;
+            right: 250px;
+            visibility: hidden;
+        }
+
+        .alt{
+            color: red;
+            position: relative;
+            bottom: -4px;
+            visibility: hidden;
+        }
+
+        .Name{
+            width: 250px;
+            margin-left: 5px;
+        }
+
+        input{
+            height: 2rem;
+            padding-left: 5px;
+            outline: none;
+            border-radius: 8px;
+            box-shadow: black 5px 5px 10px;
+        }
+
+        .UnitTest,.PreFinalMark,.FinalMark{
+            width: 7rem;
+        }
+
+        .row3{
+            color: rgb(165, 172, 234);
+            display: flex;
+            justify-content: space-around;
+        }
+        .row2,.row3{
+            display: flex;
+            align-items: center;
+        }
+
+        .left,.mid,.right{
+            display: flex;
+            flex-direction: column;
+        }
+
+        .btn{
+            width: 5rem;
+            height: 25px;
+            border-radius: 5px;
+            margin: 1rem;
+            box-shadow: black 5px 5px 10px;
+            background-color: blue;
+            color: white;
+            font-weight: 800;
+        }
+
+        .btn:hover{
+            position: relative;
+            top: 2px;
+            box-shadow: none;
+            box-shadow: black 2px 2px 5px;
+        }
+
+        .resultContainer{
+            width: 80%;
+            margin: auto;
+            border: 1px solid white;
+            border-bottom: 0px;
+        }
+
+        .row5{
+            display: flex;
+        }
+        
+        .col{
+            min-width: 5rem;
+            width: 12%;
+            border-left: 1px solid white;
+            padding: 5px 0px;
+
+        }
+        .col1{
+            flex: 1;
+        }
+
+        .col,.col1{
+            color: white;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-bottom: 1px solid white;
+        }
+
+        .result{
+            text-align: center;
+            margin: 2rem 0px;
+            color: white;
+        }
+    </style>
+    <script>
+        let formControleEl = document.getElementById('formControle');
+        let NameEl = document.getElementById('Name');
+        let UnitTestEl = document.getElementById('UnitTest');
+        let PreFinalMarkEl =document.getElementById('PreFinalMark');
+        let FinalMarkEl = document.getElementById('FinalMark');
+        let resultContainerEl = document.getElementById('resultContainer');
+        let HidingRows = document.querySelectorAll('#row');
+        let resultEl = document.getElementById('result');
+
+        let alt1El = document.getElementById('alt1');
+        let alt2El = document.getElementById('alt2');
+        let alt3El = document.getElementById('alt3');
+        let alt4El = document.getElementById('alt4');
+
+        let studentDetails = [];
+        let rollNo = 0;
+
+        formControleEl.addEventListener('submit',(e)=>{
+            e.preventDefault();
+            let NameVl = NameEl.value;
+            let UnitTestVl = Number(UnitTestEl.value);
+            let PreFinalMarkVl = Number(PreFinalMarkEl.value);
+            let FinalMarkVl = Number(FinalMarkEl.value);
+            NameEl.value = '';
+            UnitTestEl.value ='';
+            PreFinalMarkEl.value = '';
+            FinalMarkEl.value ='';
+
+            if (NameVl){
+                alt1El.style.visibility = 'hidden';
+            }
+            if (UnitTestVl||UnitTestVl===0){
+                alt2El.style.visibility = 'hidden';
+            }
+            if (PreFinalMarkVl||PreFinalMarkVl===0){
+                alt3El.style.visibility = 'hidden';
+            }
+            if (FinalMarkVl||FinalMarkVl===0){
+                alt4El.style.visibility = 'hidden';
+            }
+            if (!NameVl){
+                alt1El.style.visibility = 'visible';
+            }
+            if (!UnitTestVl&&UnitTestVl!=0){
+                alt2El.style.visibility = 'visible';
+            }
+            if (!PreFinalMarkVl&&PreFinalMarkVl!=0){
+                alt3El.style.visibility = 'visible';
+            }
+            if (!FinalMarkVl&&FinalMarkVl!=0){
+                alt4El.style.visibility = 'visible';
+            }
+            if(NameVl&&(UnitTestVl||UnitTestVl===0)&&(PreFinalMarkVl||PreFinalMarkVl===0)&&(FinalMarkVl||FinalMarkVl===0)){
+                rollNo += 1;
+                let obj = {rollNo,
+                    name:NameVl,
+                    UnitTest:UnitTestVl,
+                    PreFinalMark:PreFinalMarkVl,
+                    FinalMark:FinalMarkVl,
+                    totalMark: function(){
+                        return this.UnitTest + this.PreFinalMark + this.FinalMark;
+                    }
+                }
+                resultContainerEl.innerHTML = null;
+
+                
+
+                studentDetails.push(obj)
+
+                resultContainerEl.innerHTML = null;
+                let FirstUlEl = document.createElement('li');
+                resultContainerEl.appendChild(FirstUlEl);
+                FirstUlEl.innerHTML = '<div class="row5"><div class="col1">Name</div><div class="col">Unit Mark</div><div class="col">PreFinal Mark</div><div class="col">Final Mark</div><div class="col">Total</div></div>';
+
+                studentDetails.forEach(a=>{
+                    let SecondUlEl = document.createElement('li');
+                    resultContainerEl.appendChild(SecondUlEl);
+                    SecondUlEl.innerHTML = `<div class="row5"><div class="col1">${a.name}</div><div class="col">${a.UnitTest}</div><div class="col">${a.PreFinalMark}</div><div class="col">${a.FinalMark}</div><div class="col">${a.totalMark()}</div></div>`;
+                })
+
+                if (rollNo === 5){
+                    HidingRows.forEach(a=>{
+                        a.style.visibility = 'hidden';
+                    })
+                    studentDetails.sort(function (a,b){return b.totalMark()-a.totalMark()})
+                    resultEl.innerText = `${studentDetails[0].name} scored highest mark here`;
+
+                }
+            }
+        })
+    </script>
+</body>
+</html>
