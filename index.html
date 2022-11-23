@@ -194,10 +194,6 @@
             let UnitTestVl = UnitTestEl.value;
             let PreFinalMarkVl = PreFinalMarkEl.value;
             let FinalMarkVl = FinalMarkEl.value;
-            NameEl.value = '';
-            UnitTestEl.value ='';
-            PreFinalMarkEl.value = '';
-            FinalMarkEl.value ='';
 
             if (NameVl){
                 alt1El.style.visibility = 'hidden';
@@ -224,6 +220,10 @@
                 alt4El.style.visibility = 'visible';
             }
             if(NameVl&&UnitTestVl&&PreFinalMarkVl&&FinalMarkVl){
+                NameEl.value = '';
+                UnitTestEl.value ='';
+                PreFinalMarkEl.value = '';
+                FinalMarkEl.value ='';
                 rollNo += 1;
                 let obj = {rollNo,
                     name:NameVl,
